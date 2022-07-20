@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +19,11 @@ use App\Http\Controllers\TaskController;
 
 Route::prefix('/v1')->group(function (){
 
+    Route::get('/users', [UserController::class, 'userList'])->middleware('auth:sanctum')->name('api.v1.userList');
+
     Route::get('/tasks', [TaskController::class, 'index'])->name('api.v1.tasks');
 
-    Route::prefix('/task')/*->middleware('auth:sanctum')*/->group(function (){
+    Route::prefix('/task')->middleware('auth:sanctum')->group(function (){
 
         Route::post('/add', [TaskController::class, 'store'])->name('api.v1.tasks.add');
 

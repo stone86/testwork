@@ -16,7 +16,7 @@ class MySqlTaskRepository implements TaskRepositoryInterface
 
     public function getAll(): Collection
     {
-        return Task::all();
+        return Task::with('user')->get();
     }
 
     public function get(int $id): ?Task
