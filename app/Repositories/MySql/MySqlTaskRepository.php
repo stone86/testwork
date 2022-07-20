@@ -14,6 +14,11 @@ class MySqlTaskRepository implements TaskRepositoryInterface
         return Task::where('user_id', $user->__get('id'))->get();
     }
 
+    public function getAll(): Collection
+    {
+        return Task::all();
+    }
+
     public function get(int $id): ?Task
     {
         return Task::find($id);
@@ -29,7 +34,10 @@ class MySqlTaskRepository implements TaskRepositoryInterface
 
     public function update(int $id, array $data): ?Task
     {
-        $task = Task::firstOrNew(['id'=>$id]);
+        $task = Task::find($id);
+        if(!$task)
+            return null;
+
         $task->fill($data);
         $task->save();
 

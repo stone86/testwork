@@ -10,6 +10,8 @@ interface TaskRepositoryInterface
 {
     public function getByUser(User $user):Collection;
 
+    public function getAll():Collection;
+
     public function get(int $id):?Task;
 
     public function add(array $data):?Task;

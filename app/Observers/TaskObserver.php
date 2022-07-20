@@ -26,6 +26,17 @@ class TaskObserver
     }
 
     /**
+     * Handle the Task "saved" event.
+     *
+     * @param  \App\Models\Task  $task
+     * @return void
+     */
+    public function saved(Task $task)
+    {
+        $this->historyRepository->writeUpdate($task);
+    }
+
+    /**
      * Handle the Task "updated" event.
      *
      * @param  \App\Models\Task  $task
@@ -36,14 +47,4 @@ class TaskObserver
         $this->historyRepository->writeUpdate($task);
     }
 
-    /**
-     * Handle the Task "deleted" event.
-     *
-     * @param  \App\Models\Task  $task
-     * @return void
-     */
-    public function deleted(Task $task)
-    {
-        $this->historyRepository->writeDelete($task);
-    }
 }

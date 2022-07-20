@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('event_name');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('task_id')->constrained();
+            $table->foreignId('task_id')->constrained()->cascadeOnDelete();
         });
     }
 

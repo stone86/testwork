@@ -14,7 +14,7 @@ class MySqlHistoryRepository implements HistoryRepositoryInterface
             History::create([
                 'event_name' => 'add',
                 'task_id' => $task->id,
-                'user_id' => $task->user_id
+                'user_id' => request()->user() ? request()->user()->__get('id') : 0
             ]);
 
             return true;
@@ -29,7 +29,7 @@ class MySqlHistoryRepository implements HistoryRepositoryInterface
             History::create([
                 'event_name' => 'update',
                 'task_id' => $task->id,
-                'user_id' => $task->user_id
+                'user_id' => request()->user() ? request()->user()->__get('id') : 0
             ]);
 
             return true;
@@ -44,7 +44,7 @@ class MySqlHistoryRepository implements HistoryRepositoryInterface
             History::create([
                 'event_name' => 'delete',
                 'task_id' => $task->id,
-                'user_id' => $task->user_id
+                'user_id' => request()->user() ? request()->user()->__get('id') : 0
             ]);
 
             return true;
