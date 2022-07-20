@@ -17,7 +17,7 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Tasks');
-});
+})->middleware(['auth']);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
